@@ -7,4 +7,4 @@ class Point:
         self.y = y
 
     def show(self):
-        return print("(" + str(self.x) + ", " + str(self.y) + ")")
+        return "(" + str(self.x) + ", " + str(self.y) + ")"
