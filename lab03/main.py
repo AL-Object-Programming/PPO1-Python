@@ -13,17 +13,23 @@ def check_if_square(square: Square):
     cd = math.sqrt(pow((square.c.x - square.d.x), 2)) + (pow((square.c.y - square.d.y), 2))
     if ab == bc and ab == ad and ab == cd and bc == ad and bc == cd and ad == cd:
         print("square is geometrically correct")
+        return 1
+    return 0
 
 
 if __name__ == '__main__':
+    min = 0
+    max = 5
+    counter = 0
     squares: List[Square] = []
-    for index in range(400):
-        a = Point(random.randint(-5, 5), random.randint(-5, 5))
-        b = Point(random.randint(-5, 5), random.randint(-5, 5))
-        c = Point(random.randint(-5, 5), random.randint(-5, 5))
-        d = Point(random.randint(-5, 5), random.randint(-5, 5))
+    for index in range(700):
+        a = Point(random.randint(min, max), random.randint(min, max))
+        b = Point(random.randint(min, max), random.randint(min, max))
+        c = Point(random.randint(min, max), random.randint(min, max))
+        d = Point(random.randint(min, max), random.randint(min, max))
         squares.append(Square(a, b, c, d))
 
     for square in squares:
         square.show()
-        check_if_square(square)
+        counter += check_if_square(square)
+    print("There were " + str(counter) + " geometrically correct squares.")
