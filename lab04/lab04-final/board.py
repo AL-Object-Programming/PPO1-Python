@@ -27,8 +27,22 @@ class Board:
         for pawn in self.pawns:
             if not (self.turns_counter == self.max_turn):
                 roll_result = self.dice.roll()
-                pawn.position += roll_result
-                print(pawn.name + " new position: " + str(pawn.position))
+
+                if roll_result == 1 and (pawn.position % 2) != 0:
+                    print(pawn.name + " has bad luck!")
+                    roll_result = self.dice.roll()
+                    pawn.position -= roll_result
+                    print(pawn.name + " new position: " + str(pawn.position))
+                elif roll_result == self.dice.sides and (pawn.position % 7) == 0:
+                    pawn.position += roll_result
+                    print(pawn.name + " new position: " + str(pawn.position))
+                    print(pawn.name + " has wild luck!")
+                    roll_result = self.dice.roll()
+                    pawn.position += roll_result
+                    print(pawn.name + " new position: " + str(pawn.position))
+                else:
+                    pawn.position += roll_result
+                    print(pawn.name + " new position: " + str(pawn.position))
                 print(" ")
                 if pawn.position >= self.max_position:
                     self.winner = pawn
